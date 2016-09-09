@@ -1,14 +1,19 @@
 var webpack = require('webpack');
-
+var path = require('path');
+var src = 'source';
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+console.log(path.resolve(src, 'index.js'), './source/index.js');
 module.exports = {
   // entry: './js/entry.js',
   entry: {
     vendors: [
+        'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
+        'webpack/hot/only-dev-server',
         'react',
         'react-dom'
     ],
     index: [
-        './js/index.js' // Your appʼs entry point
+        path.resolve(src, 'index.js') // Your appʼs entry point
     ]
   },
   output: {
@@ -28,6 +33,11 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'My React App',
+      filename: 'js/index.html',
+      template: './index.html'
+    }),
     new webpack.optimize.CommonsChunkPlugin({
         // 要与entry中的名字匹配
       names: ['vendors', 'mainifest']

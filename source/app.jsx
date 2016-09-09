@@ -7,7 +7,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 var data = [
-  {name: 'RRed', value: 'red'},
+  {name: 'Red', value: 'red'},
   {name: 'Blue', value: 'blue'},
   {name: 'Yellow', value: 'yellow'},
   {name: 'Green', value: 'green'},
