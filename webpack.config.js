@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var src = 'source';
+var dist = '/dist';
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 console.log(path.resolve(src, 'index.js'), './source/index.js');
 module.exports = {
@@ -17,9 +18,9 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + '/js/',
-    filename: '[name].js',
-    publicPath: '/js/'
+    path: __dirname + dist,
+    filename: 'js/[name].js',
+    publicPath: ''
   },
   module: {
     loaders: [
@@ -35,8 +36,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'My React App',
-      filename: 'js/index.html',
-      template: './index.html'
+      filename: 'index.html',
+      template: src + '/index.html'
     }),
     new webpack.optimize.CommonsChunkPlugin({
         // 要与entry中的名字匹配
