@@ -3,23 +3,25 @@ var path = require('path');
 var src = 'source';
 var dist = '/dist';
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-console.log(path.resolve(src, 'index.js'), './source/index.js');
+// console.log(path.resolve(src, 'index.js'), './source/index.js');
 module.exports = {
   // entry: './js/entry.js',
   entry: {
-    vendors: [
-        'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
-        'webpack/hot/only-dev-server',
+    // 名字可以含路径，以用来将打包后的文件放入不同的路径
+    'js/vendors': [
+        // 'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
+        // 'webpack/hot/only-dev-server',
         'react',
-        'react-dom'
+        'react-dom',
+        './source/lib/jquery-1.12.3.min'
     ],
-    index: [
+    'js/index': [
         path.resolve(src, 'index.js') // Your appʼs entry point
-    ]
+    ],
   },
   output: {
     path: __dirname + dist,
-    filename: 'js/[name].js',
+    filename: '[name].js',
     publicPath: ''
   },
   module: {
@@ -41,7 +43,7 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
         // 要与entry中的名字匹配
-      names: ['vendors', 'mainifest']
+      names: ['js/vendors', 'js/mainifest']
     }),
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"development"'
