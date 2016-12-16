@@ -1,6 +1,6 @@
 'use strict';
 
-require('../style.css');
+require('./style.css');
 
 import TabSelector from './TabSelector';
 import React from 'react';
